@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Header from "../_components/Header/Header";
-import Footer from "@/app/_components/Footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "./Navbar";
 
@@ -16,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="w-screen flex flex-col justify-between bg-black min-h-screen">
-      <Header />
+      {/* <Header /> */}
       <div id="cars" className="w-full flex  justify-center px-4 py-4 h-full">
         <div className="w-[1440px] py-12 flex justify-between">
           <Navbar />
@@ -24,7 +22,7 @@ export default function RootLayout({
         </div>
       </div>
       <Toaster />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
