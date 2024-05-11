@@ -61,7 +61,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <Wrapper label={"Бүртгүүлэх"}>
+    <Wrapper label={"Sign up"}>
       <Form {...form}>
         <form
           className="space-y-6 w-full"
@@ -77,7 +77,7 @@ export default function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="И-мэйл"
+                      placeholder="Enter your email"
                       type="email"
                     />
                   </FormControl>
@@ -95,7 +95,7 @@ export default function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="Нууц үг"
+                      placeholder="Password"
                       type="password"
                     />
                   </FormControl>
@@ -112,7 +112,7 @@ export default function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="Нууц үг давтах"
+                      placeholder="Confirm password"
                       type="password"
                     />
                   </FormControl>
@@ -124,11 +124,11 @@ export default function RegisterForm() {
           <FormError message={error} />
           <FormSuccess message={success} />
           <Button className="w-full" type="submit" disabled={isPending}>
-            Бүртгүүлэх
+            Sign up
           </Button>
         </form>
       </Form>
-      <ButtonAuth />
+      <ButtonAuth isPending={isPending} />
     </Wrapper>
   );
 }

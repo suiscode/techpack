@@ -55,7 +55,7 @@ export default function LoginForm() {
           return;
         }
 
-        router.push("/cars");
+        router.push("/profile");
         if (res.data.twoFactor) {
           setShowTwoFactor(true);
           toast({
@@ -94,7 +94,7 @@ export default function LoginForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="И-мэйл"
+                      placeholder="Enter your email"
                       type="email"
                     />
                   </FormControl>
@@ -112,7 +112,7 @@ export default function LoginForm() {
                       <Input
                         disabled={isPending}
                         {...field}
-                        placeholder="Нууц үг"
+                        placeholder="Password"
                         type="password"
                       />
                     </FormControl>
@@ -127,7 +127,7 @@ export default function LoginForm() {
                   className="text-primary p-0"
                   type="button"
                 >
-                  <Link href="/auth/reset">Нууц үг сэргээх</Link>
+                  <Link href="/auth/reset">Forgot password?</Link>
                 </Button>
                 <Button
                   variant="link"
@@ -135,7 +135,7 @@ export default function LoginForm() {
                   className="text-primary p-0"
                   type="button"
                 >
-                  <Link href="/auth/register">Бүртгэл үүсгэх</Link>
+                  <Link href="/auth/register">Don't have an account?</Link>
                 </Button>
               </div>
             </div>
@@ -143,11 +143,11 @@ export default function LoginForm() {
           <FormSuccess message={success} />
           <FormError message={error} />
           <Button className="w-full border" type="submit" disabled={isPending}>
-            Нэвтрэх
+            Sign in
           </Button>
         </form>
       </Form>
-      <ButtonAuth />
+      <ButtonAuth isPending={isPending} />
     </Wrapper>
   );
 }

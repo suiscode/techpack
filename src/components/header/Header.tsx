@@ -1,12 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { auth } from "../../../auth";
 
-const Header = () => {
+const Header = async () => {
+  const session = await auth();
+
   return (
-    <div className="w-screen bg-secondary border-b py-4 text-primary flex items-center justify-center">
-      <div className="w-[1440px] flex  justify-between">
-        <Link href='/'>Techpack</Link>
-        <Link href="/auth/signin">Sign in</Link>
+    <div className="w-screen bg-[#F7F7F7] drop-shadow-md border-b text-primary flex items-center justify-center">
+      <div className="w-[1440px] flex  justify-between items-center">
+        <Link href="/">
+          <Image
+            src="/icon.png"
+            width={48}
+            height={48}
+            alt="icon"
+            className=""
+          />
+        </Link>
+        {session !== null ? (
+          <Link href="/profile" className="flex items-center gap-2">
+            My profile
+          </Link>
+        ) : (
+          <Link href="/auth/signin">Sign in</Link>
+        )}
       </div>
     </div>
   );

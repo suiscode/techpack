@@ -30,9 +30,6 @@ export const POST = async (req: NextRequest) => {
     const newUser = await db.user.create({
       data: {
         email,
-        firstName,
-        lastName,
-        phoneNumber: phoneNumber.toString(),
         password: hashedPassword,
       },
     });

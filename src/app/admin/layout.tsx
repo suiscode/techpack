@@ -15,9 +15,7 @@ export default function RootLayout({
   return (
     <div className="flex flex-col w-full bg-black min-h-screen">
       <Toaster />
-
       <Menu />
-
       {children}
     </div>
   );

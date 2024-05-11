@@ -20,12 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} bg-[#F7F7F7]`}>
         <AuthProdiver>
           <GlobalContextProvider>
-            {/* <Header /> */}
-            <main className="container">
-              <div className="flex items-start justify-center min-h-screen">
+            <Header />
+            <main className="container ">
+              <div className="flex items-start  justify-center min-h-screen">
                 <div className="">{children}</div>
               </div>
             </main>

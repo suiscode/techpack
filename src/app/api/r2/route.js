@@ -1,6 +1,7 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 } from "uuid";
+import { db } from "@/lib/db";
 
 const S3 = new S3Client({
   endpoint:
@@ -14,32 +15,27 @@ const S3 = new S3Client({
 });
 
 export async function GET(req) {
-  const count = req.nextUrl.searchParams.get("count");
+  const id = v4();
+  const userId = req.nextUrl.searchParams.get("id");
+  console.log(req.nextUrl.searchParams.get("id"));
 
-
-
-  const keys = Array.from({ length: Number(count) }, () => v4());
-
-  const urls = keys.map(async (id) => {
-    const presignedURL = await getSignedUrl(
-      S3,
-      new PutObjectCommand({
-        Bucket: "carrental",
-        Key: id,
-      })
-    );
-
-    return presignedURL;
+  const url = await getSignedUrl(
+    S3,
+    new PutObjectCommand({
+      Bucket: "carrental",
+      Key: id,
+    })
+  );
+  console.log(url);
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      image:
+        "https://pub-9e4a462638ff4a6e89664b9e0dd86ca5.r2.dev/carrental%2F" + id,
+    },
   });
 
-  const response = await Promise.all(urls);
-
   return Response.json({
-    uploadUrl: response,
-    accessUrls: keys.map(
-      (key) =>
-        "https://pub-9e4a462638ff4a6e89664b9e0dd86ca5.r2.dev/carrental%2F" +
-        key
-    ),
+    uploadUrl: url,
   });
 }

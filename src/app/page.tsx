@@ -32,13 +32,15 @@ export default function Home() {
             accuracy, and free up your team to focus on what truly matters: the
             people.
           </p>
-          <Button
-            className="rounded-3xl border-2 text-xl px-8 py-10"
-            variant={"outline"}
-            onMouseMove={handleMouseMove}
-          >
-            <Link href="/profile">Start right now</Link>
-          </Button>
+          <Link href="/profile">
+            <Button
+              className="rounded-3xl border-2 text-xl px-8 py-10"
+              variant={"outline"}
+              onMouseMove={handleMouseMove}
+            >
+              Start right now
+            </Button>
+          </Link>
         </div>
         <div className="relative min-w-[1000px] h-[640px]">
           <div className="w-12 h-12 absolute top-[10px] left-[240px] border-blue-700 border-2 rounded-full animate-bounce delay-300"></div>

@@ -30,7 +30,7 @@
     "src/app/utils.js",
     "src/app/components/HomePage/WordWheel.js",
     "src/app/auth/background/Background.js",
-    "src/app/fetch.js"
+    "src/lib/fetch.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -22,4 +22,4 @@ export const apiAuthPrefix = "/api/auth";
 export const carPath = "/cars";
 export const adminRoute = "/admin";
 
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = "/profile";

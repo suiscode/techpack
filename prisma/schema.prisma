@@ -18,18 +18,45 @@ enum UserRole {
   USER
 }
 
-
-
-model User {
-  name                  String?
-  id                    String                 @id @default(auto()) @map("_id") @db.ObjectId
-  email                 String?                @unique
-  emailVerified         DateTime?
-  password              String?
-  role                  UserRole               @default(USER)
-  accounts              Account[]
+enum Gender {
+  male
+  female
 }
 
+model User {
+  name          String?
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  role          UserRole  @default(USER)
+  accounts      Account[]
+  cv            CV?       @relation(fields: [cvId], references: [id])
+  cvId          String?   @db.ObjectId
+}
+
+model CV {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  // Example fields:
+  about            String?
+  education        String?
+  experience       String?
+  skills           String[]
+  firstName        String?
+  lastName         String?
+  registerID       String?   @unique
+  gender           Gender?
+  bDay             DateTime?
+  phoneNumber      String?
+  email            String?   @unique
+  address          String?
+  career           String?
+  salaryExpectency Int?
+  workDuration     String?
+  // Any other fields relevant to the CV
+  User             User[]
+}
 
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -44,8 +71,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }

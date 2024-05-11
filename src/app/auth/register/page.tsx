@@ -3,7 +3,7 @@ import RegisterForm from "./register-form";
 
 function RegisterPage() {
   return (
-    <div className="w-full h-full">
+    <div className="min-h-screen flex justify-center">
       <RegisterForm />
     </div>
   );
