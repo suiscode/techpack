@@ -17,14 +17,14 @@ function Menu() {
 
   const pathname = usePathname().split("/").pop();
   return (
-    <div className="h-[40px] flex items-center px-10 gap-4 text-secondary border-b border-white/90 w-full justify-between">
+    <div className="h-[40px] flex items-center px-10 gap-4 text-black border-b border-white/90 w-full justify-between">
       <ul>
         {links.map((item) => (
           <Button key={item.label} variant="link">
             <Link
               className={`${
                 pathname === item.link && "underline"
-              } text-secondary`}
+              } text-black`}
               href={`/admin/${item.link}`}
             >
               {item.label}
@@ -32,9 +32,9 @@ function Menu() {
           </Button>
         ))}
       </ul>
-      {/* <h1 onClick={onClick} className="cursor-pointer">
+      <h1 onClick={onClick} className="cursor-pointer">
         Log out
-      </h1> */}
+      </h1>
     </div>
   );
 }

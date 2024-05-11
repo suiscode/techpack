@@ -5,7 +5,20 @@ export const LoginSchema = z.object({
   password: z.string().min(1, {
     message: "Нууц үгээ оруулана уу",
   }),
-  code: z.optional(z.string()),
+});
+
+export const generalSchema = z.object({
+  about: z.optional(z.string()),
+  firstName: z.string().min(1, {
+    message: "Password is required",
+  }),
+  lastName: z.string().min(1, {
+    message: "Password is required",
+  }),
+  registerID: z.string().min(1, {
+    message: "Password is required",
+  }),
+  gender: z.optional(z.string()),
 });
 
 export const NewPasswordSchema = z.object({
@@ -31,7 +44,7 @@ export const RegisterSchema = z
       ctx.addIssue({
         code: "custom",
         message: "Нүүг үг таарсангүй",
-        path: ['confirmPassword'],      
+        path: ["confirmPassword"],
       });
     }
   });

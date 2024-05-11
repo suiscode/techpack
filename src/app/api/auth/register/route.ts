@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 import { RegisterSchema } from "@/lib/schema";
 import { getUserByEmail } from "@/lib/user-data";
-import { connectToDB } from "@/app/utils";
 import { db } from "@/lib/db";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
@@ -18,9 +17,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ error: "Invalid fields" }, { status: 400 });
   }
   try {
-    connectToDB();
-
-    const { email, password, firstName, lastName, phoneNumber } = body;
+    const { email, password } = body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const existingUser = await getUserByEmail(email);
 
@@ -31,6 +28,26 @@ export const POST = async (req: NextRequest) => {
       data: {
         email,
         password: hashedPassword,
+      },
+    });
+
+    const newCV = await db.cV.create({
+      data: {
+        email,
+      },
+    });
+
+    // Step 3: Associate the CV with the user
+    await db.user.update({
+      where: {
+        id: newUser.id,
+      },
+      data: {
+        cv: {
+          connect: {
+            id: newCV.id,
+          },
+        },
       },
     });
 

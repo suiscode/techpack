@@ -79,18 +79,6 @@ export default {
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
       }
-      if (token.phoneNumber && session.user) {
-        session.user.phoneNumber = token.phoneNumber as string;
-      }
-      if (token.firstName && session.user) {
-        session.user.firstName = token.firstName as string;
-      }
-      if (token.lastName && session.user) {
-        session.user.lastName = token.lastName as string;
-      }
-      if (token.address && session.user) {
-        session.user.address = token.address as string;
-      }
 
       return session;
     },
